@@ -4,12 +4,13 @@
 -- It's very familiar with if statements but more readable.
 -- Guards play really nicely with patterns.
 
-bmi :: (RealFloat a) => a -> a -> String
-bmi w h -- Yes, there's no '=' right after the function name and its parameters
-    | w / h^ 2 <= 18.25 = "You're underweight, you emo, you!"
-    | w / h^ 2 <= 25.0  = "You're supposedly normal. Pffff, I bet you're ugly!"
-    | w / h^ 2 <= 30    = "You're fat!"
+bmiTell :: (RealFloat a) => a -> a -> String
+bmiTell w h -- Yes, there's no '=' right after the function name and its parameters
+    | bmi<= 18.25 = "You're underweight, you emo, you!"
+    | bmi <= 25.0  = "You're supposedly normal. Pffff, I bet you're ugly!"
+    | bmi <= 30    = "You're fat!"
     | otherwise         = "You're a whale, congrats!"
+    where bmi = w * h ^2 
     
 max' :: (Ord a) => a -> a -> a
 max' a b 
