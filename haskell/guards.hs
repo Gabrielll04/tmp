@@ -23,9 +23,18 @@ a `myCompare` b
     | a > b     = GT 
     | a == b    = EQ
     | otherwise = LT
-    
+
+initials :: String -> String -> String
+initials firstname lastname = [f] ++ ". " ++ [l] ++ "."
+    where (f:_) = firstname
+          (l:_) = lastname
+          
 main :: IO ()
 main = do
     print (bmi 54 1.70)
+    
     print (max' 5 4)
+    
     print (5 `myCompare` 3)
+
+    print (initials "Gabriel" "Guimaraes")
