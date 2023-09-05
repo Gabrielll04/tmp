@@ -6,11 +6,12 @@
 
 bmiTell :: (RealFloat a) => a -> a -> String
 bmiTell w h -- Yes, there's no '=' right after the function name and its parameters
-    | bmi<= 18.25 = "You're underweight, you emo, you!"
-    | bmi <= 25.0  = "You're supposedly normal. Pffff, I bet you're ugly!"
-    | bmi <= 30    = "You're fat!"
+    | bmi <= skinny = "You're underweight, you emo, you!"
+    | bmi <= normal  = "You're supposedly normal. Pffff, I bet you're ugly!"
+    | bmi <= fat    = "You're fat!"
     | otherwise         = "You're a whale, congrats!"
     where bmi = w * h ^2 
+          (skinny, normal, fat) = (18.5, 25.0, 30.0)
     
 max' :: (Ord a) => a -> a -> a
 max' a b 
