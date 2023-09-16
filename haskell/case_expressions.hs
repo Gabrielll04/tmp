@@ -7,6 +7,11 @@
 -- Well, that's actually just syntactic sugar for case expressions.
 -- These two pieces of code do the same thing and are interchangeable:
 
+describeList :: [a] -> String
+describeList xs = "Your list is " ++ case xs of []  -> "empty"
+                                     [x] -> "a singleton list"
+                                     xs  -> "a big list"
+
 head' :: [a] -> a
 head' [] = "No head for empty lists"
 head' (x:_) = x
