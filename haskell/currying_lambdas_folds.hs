@@ -26,7 +26,7 @@ flip' f = \x y -> f y x
 -- folds functions
 
 sum' :: (Num a) => [a] -> a
-sum' xs = foldl (\acc x -> acc + x) 0 xs -- 0 is the first value, xs is the list to be folded up.. 0 is used as the acc parameter and the x is the current elemtent parameter. 0 + 3 produces a 3 and it becomes the new accumulator value.
+sum' xs = foldl (\acc x -> acc + x) 0 xs-- 0 is the first value, xs is the list to be folded up.. 0 is used as the acc parameter and the x is the current elemtent parameter. 0 + 3 produces a 3 and it becomes the new accumulator value.
 
 succinctlySum' :: (Num a) => [a] -> a -- Taking curried functions into account to write a more succinctly function
 succinctlySum' = foldl (+) 0
@@ -47,6 +47,21 @@ map' f xs = foldr (\x acc -> f x : acc) [] xs
 maximum' :: (Ord a) => [a] -> a
 maximum' = foldr1 (\x acc -> if x > acc then x else acc)
 
+reverse' :: [a] -> [a]
+reverse' = foldl (\acc x -> x : acc) []
+
+product' :: (Num a) => [a] -> a
+product' = foldr1 (*)
+
+filter' :: (a -> Bool) -> [a] -> [a]
+filter' p = foldr (\x acc -> if p x then x : acc else acc) []
+
+head' :: [a] -> a
+head' = foldr1 (\x _ -> x) 
+
+last' :: [a] -> a
+last' = foldl1 (\_ x -> x)
+
 main :: IO ()
 main = do
     print (largestDivisible)
@@ -61,4 +76,8 @@ main = do
     
     print (sum' [1,2,3,4,5])
     print (map' (+3) [1,2,3])
-    print (maximum [1,2,3,4,5]) 
+    print (maximum' [1,2,3,4,5])
+    print (reverse' [1,2,3,4,5])
+    print (filter' (>3) [1,2,3,4,5])
+    print (head' [1,1,2,3,4,5])
+    print (product' []) -- foldr1 and foldl1 brokes with empty lists
