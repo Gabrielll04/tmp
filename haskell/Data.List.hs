@@ -30,3 +30,8 @@ main = do
     print (break (==4) [1,2,3,4,5]) -- ([1,2,3],[4,5])
     
     -- I got tired of copying the functions
+    
+    print (sort [8,5,3,2,1,6,4,2]) -- [1,2,2,3,4,5,6,8]
+    print (group [1,1,1,1,2,2,2,2,3,3,2,2,2,5,6,7]) -- [[1,1,1,1],[2,2,2,2],[3,3],[2,2,2],[5],[6],[7]]
+    print (map (\l@(x:xs) -> (x, length l)) . group . sort $ [1,1,1,1,2,2,2,2,3,3,2,2,2,5,6,7]) -- If we sort a list before grouping it, we can find out how many times each element appears in the list.
+    print (inits "hello") -- inits and list are like 'init' and 'list' but its apply that recursively -- ["","h","he","hel","hell","hello"]
