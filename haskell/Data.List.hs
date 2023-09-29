@@ -17,7 +17,7 @@ main = do
     print (any (>4) [4,4,4,5]) -- 'all' and 'any' takes an predicate then checks if one or all the elements in a list satisfy the predicate. In this exemple, 'any' return True because 5 is greater than 4 and satisfies the predicate '(>4)'
     print (all (==4) [3,4,4,4]) -- False
     print (any (`elem` ['A'..'Z']) "Abcde") -- True
-    print (all (`elem` ['a'..'z']) "HELLO MATE") -- False
+    print (all (`elem` ['a'..'Z']) "HELLO MATE") -- False
     print (take 10 $ iterate (*10) 1) -- iterate takes a function and a starting value. It applies the function to the starting value, then it applies that function to the result, then it applies the function to that result again, etc.
     print (take 5 $ iterate (++ "haha") "haha")
     print (splitAt 3 "heyman") -- ("hey", "man")
