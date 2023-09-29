@@ -35,3 +35,13 @@ main = do
     print (group [1,1,1,1,2,2,2,2,3,3,2,2,2,5,6,7]) -- [[1,1,1,1],[2,2,2,2],[3,3],[2,2,2],[5],[6],[7]]
     print (map (\l@(x:xs) -> (x, length l)) . group . sort $ [1,1,1,1,2,2,2,2,3,3,2,2,2,5,6,7]) -- If we sort a list before grouping it, we can find out how many times each element appears in the list.
     print (inits "hello") -- inits and list are like 'init' and 'list' but its apply that recursively -- ["","h","he","hel","hell","hello"]
+    print (let w = "teste" in zip (inits w) (tails w))
+    print ("cat" `isInfixOf` "i am a cat burglar") -- isInfixOf searches for a sublist within a list and returns True if that sublist is somewhere inside the list.
+    print ("hey" `isSuffixOf` "hey there!") -- isSufixOf searches for a sublist at the beginning and at the end of a list, respectively.
+    print (partition (`elem` ['A'..'B']) "BOBsidneyMORGANeddy") -- partition takes a function and a list then it returns a pair of lists. The first lists contains all the elements that satisfy the predicate, the second contais all the ones that don't.
+    print (find (>5) [1,2,3,4,5,6]) -- find takes a predicate and a list and returns the first element that satisfy the predicate. But it returns that element wrapped in Maybe value.
+    print (find (>9) [1,2,3,4,5]) -- Nothing
+    -- Remember when we were searching for the first time our stock went over $1000. We did head (dropWhile (\(val,y,m,d) -> val < 1000) stock). Remember that head is not really safe. What would happen if our stock never went over $1000? Our application of dropWhile would return an empty list and getting the head of an empty list would result in an error. However, if we rewrote that as find (\(val,y,m,d) -> val > 1000) stock, we'd be much safer.
+    
+    print (elemIndex 3 [1,2,3,4]) -- elemIndex Takes a number and a list, then it searches the number, if the number is inside the list, then it returns the index of the element
+    
