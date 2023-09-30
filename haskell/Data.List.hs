@@ -44,4 +44,28 @@ main = do
     -- Remember when we were searching for the first time our stock went over $1000. We did head (dropWhile (\(val,y,m,d) -> val < 1000) stock). Remember that head is not really safe. What would happen if our stock never went over $1000? Our application of dropWhile would return an empty list and getting the head of an empty list would result in an error. However, if we rewrote that as find (\(val,y,m,d) -> val > 1000) stock, we'd be much safer.
     
     print (elemIndex 3 [1,2,3,4]) -- elemIndex Takes a number and a list, then it searches the number, if the number is inside the list, then it returns the index of the element
-    
+    print (3 `elemIndices` [1,2,3,4,5,3]) -- elemIndices takes a element and a list then searches for the element in the list. Returns a list with the indices of the element.
+    print (findIndices (>3) [1,2,3,4,5]) -- Returns a list of indices of elements that satisfy the predicate.
+    print (zipWith3 (\x y z -> x + y + z) [1,2,3] [4,5,2,2] [2,2,3]) -- [7,9,8]
+    print (zip4 [2,3,3] [2,2,2] [5,5,3] [2,2,2]) -- [(2,2,5,2),(3,2,5,2),(3,2,3,2)]
+    print (lines "first line\nsecond line\nthird line") -- Takes a string and returns every line of that string. Note the \n
+    print (unlines ["first line", "second line", "third line"]) -- "first line\nsecond line\nthird line"
+    print (nub [1,2,3,4,3,2,1,2,3,4,3,2,1]) -- Returns the given list without repeated elements.
+    print (delete 'h' "hey there ghang!") -- "ey there ghang!"
+    print ([1..10] \\ [2,5,9]) -- \\ is the list difference function. It acts like a set difference, basically. For every element in the right-hand list, it removes a matching element in the left one.  -- [1,3,4,6,7,8,10]
+
+    -- What length, take, drop, splitAt, !! and replicate have in common is that they take an Int as one of their parameters (or return an Int),
+    -- even though they could be more generic and usable if they just took any type that's part of the Integral or Num typeclasses (depending on the functions).
+    -- They do that for historical reasons. However, fixing that would probably break a lot of existing code.
+    -- That's why Data.List has their more generic equivalents, named genericLength, genericTake, genericDrop, genericSplitAt, genericIndex and genericReplicate.
+    -- For instance, length has a type signature of length :: [a] -> Int. If we try to get the average of a list of numbers by doing let xs = [1..6] in sum xs / length xs,
+    -- we get a type error, because you can't use / with an Int. genericLength, on the other hand, has a type signature of genericLength :: (Num a) => [b] -> a.
+    -- Because a Num can act like a floating point number, getting the average by doing let xs = [1..6] in sum xs / genericLength xs works out just fine.
+
+    -- groupBy ((==) `on` (> 0)) values  
+
+    -- ghci> let xs = [[5,4,5,4,4],[1,2,3],[3,5,4,3],[],[2],[2,2]]  
+    -- ghci> sortBy (compare `on` length) xs  
+    -- [[],[2],[2,2],[1,2,3],[3,5,4,3],[5,4,5,4,4]]  
+    -- If you're not sure how exactly the on works here, compare `on` length is the equivalent of \x y -> length x `compare` length y
+    -- when you're dealing with By functions that take an ordering function, you usually do compare `on` something.
