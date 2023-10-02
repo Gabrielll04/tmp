@@ -4,8 +4,14 @@ data Maybe a = Nothing | Just a -- The a here is the type parameter. And because
 
 -- Type parameters are useful because we can make different types with them depending on what kind of types we want contained in our data type
 
-data Car ab c = Car { company :: a
+data Car a b c = Car { company :: a
                     , model :: b
                     , year :: c  
                     } deriving (Show)
-                    
+
+tellCar :: (Show a) => Car String String a -> String  
+tellCar (Car {company = c, model = m, year = y}) = "This " ++ c ++ " " ++ m ++ " was made in " ++ show y  
+
+main :: IO ()
+main = do 
+    print (tellCar (Car "Ford" "Ka" 2014))
