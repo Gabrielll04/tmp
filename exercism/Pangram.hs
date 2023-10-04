@@ -1,10 +1,8 @@
--- It's not finished yet...
-
 import Data.List (isInfixOf, splitAt, concat)
-import Data.Char (isSpace)
+import Data.Char (isSpace, isMark, isNumber)
 
 rmDup [] = []
-rmDup (x:xs) = x : rmDup (filter (\x -> not(isSpace x)) (filter (\y -> not(x == y)) xs))
+rmDup (x:xs) = x : rmDup (filter (\x -> not(isNumber x)) (filter (\x -> x /= '_') (filter (\x -> not(isMark x)) (filter (\x -> not(isSpace x)) (filter (\y -> not(x == y)) xs))))) -- I know that's horrible, I'm just a  beginner man :(
 
 quicksort :: (Ord a) => [a] -> [a]
 quicksort [] = []
@@ -20,4 +18,5 @@ isPangram text
     
 main :: IO ()
 main = do   
-    print (isPangram "the quick brown fox jumps over the lazy dog")
+    print (isPangram "abcdefghijklmnopqrstuvwxyz")
+    print (rmDup "abcdefghijklmnopqrstuvwxyz")
