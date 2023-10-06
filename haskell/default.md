@@ -4,3 +4,6 @@
 - [REST API](https://www.spock.li/tutorials/rest-api)
 - [Interaction Nets](https://zicklag.github.io/blog/interaction-nets-combinators-calculus/#:~:text=Interaction%20combinators%20are%20specific%20set,still%20perform%20the%20same%20computation.)
 - [Lambda Explorer](https://lambdaexplorer.com/)
+
+### Recorded Series:
+- [Functional Programming in Haskell - Graham Hutton](https://www.youtube.com/playlist?list=PLF1Z-APd9zK7usPMx3LGMZEHrECUGodd3)
