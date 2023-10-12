@@ -1,6 +1,8 @@
 module Pangram (isPangram) where
+
 import Data.List
 import Data.Char
+
 rmDup :: String -> String-- I know that's horrible solution, I'm just a beginner man :(
 rmDup [] = []
 rmDup arr@(x:xs) 
@@ -15,6 +17,7 @@ quicksort (x:xs) =
   let lowerSorted = quicksort [a | a <- xs, a <= x]
       upperSorted = quicksort [a | a <- xs, a > x]
   in lowerSorted ++ [x] ++ upperSorted
+  
 isPangram :: String -> Bool
 isPangram text
     | ['a'..'z'] == quicksort (rmDup $ map toLower text) = True
