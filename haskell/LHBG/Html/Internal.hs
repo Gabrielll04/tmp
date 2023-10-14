@@ -2,13 +2,12 @@
 
 module Html.Internal where
 
--- * types
+import Markup
+
+-- * Types
 
 newtype Html 
   = Html String
-
-newtype Structure 
-  = Structure String
 
 type Title
   = String
@@ -18,9 +17,10 @@ type Title
 html_ :: Title -> Structure -> Html
 html_ title content =
   Html (
-    el "html"
-      ( el "title" ( escape title ) )
-      <>  el "body" ( getStructString content )
+    el "html" ( 
+      el "title" (escape title) 
+      <>  el "body" (getStructString content)
+    )
   )
 
 append_ :: Structure -> Structure -> Structure
@@ -32,6 +32,15 @@ p_ = Structure . el "p" . escape
 
 h1_ :: String -> Structure
 h1_ = Structure .  el "h1" . escape
+
+ul_ :: [Structure] -> Structure
+ul_ = Structure . el "ul" . concatMap (el "li" . getStructString)
+
+ol_ :: [Structure] -> Structure
+ol_ = Structure . el "ol" . concatMap (el "li" . getStructString)
+
+code_ :: String -> Structure
+code_ = Structure . el "pre" . escape
 
 -- * Render
 
@@ -60,3 +69,23 @@ escape =
         _ -> [c]
   in 
     concatMap escapeChar
+
+parse :: String -> Document
+parse = parseLines [] . lines
+
+parseLines :: [String] -> [String] -> Document
+parseLines currentParagraph txts = 
+  let
+    paragraph = Paragraph (unlines (reverse currentParagraph))
+  in
+    case txts of
+      [] -> [paragraph]
+      currentLine : rest ->
+        if trim currentLine == ""
+          then
+            paragraph : parseLines [] rest
+          else 
+            parseLines (currentLines : currentParagraph) rest
+
+trim :: String -> String
+trim = unwords . words

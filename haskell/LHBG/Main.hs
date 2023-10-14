@@ -3,7 +3,7 @@ module Main where
 import Html
 
 main :: IO ()
-main = putStrLn (ul_ [h_ "teste"])
+main = putStrLn (render myhtml)
 
 myhtml :: Html
 myhtml = 
@@ -12,7 +12,15 @@ myhtml =
       ( append_ 
         ( h1_ "Hello world>>" ) 
           ( append_ 
-            ( p_ "are you okay?" )
-            ( p_ "I hope you're fine" )
+            (
+              ul_ 
+                [ p_ "are you ok?"
+                , p_ "I hope you're fine"
+                , p_ ":D"
+                ]
+            )
+            (
+              code_ "are you ok?"
+            )
           )
       )
