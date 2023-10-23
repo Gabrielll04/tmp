@@ -17,3 +17,13 @@ treeElem x (Node a left right)
     | x == a = True
     | x < a  = treeElem x left
     | x > a  = treeElem x right
+    
+main :: IO ()
+main = do 
+    
+    let nums = [1,2,3,4,5,6,7]
+    print (foldr treeInsert EmptyTree nums)
+    
+    let numTree = foldr treeInsert EmptyTree nums
+    print (7 `treeElem` numTree) -- True
+    print (8 `treeElem` numTree) -- False
