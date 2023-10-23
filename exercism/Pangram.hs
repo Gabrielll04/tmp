@@ -22,3 +22,7 @@ isPangram :: String -> Bool
 isPangram text
     | ['a'..'z'] == quicksort (rmDup $ map toLower text) = True
     | otherwise                                          = False
+
+
+-- You can rewrite that shit to:
+-- isPangram text = all (`elem` map toLower text) ['a'..'z']
