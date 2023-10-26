@@ -1,6 +1,5 @@
 -- Functor is like Show or Read, but for values that can be mapped over
 -- Note that Functor is a typeclass, like Ord.
--- A functor take values as parameters to produce values
 
 class Functor f where  
     fmap :: (a -> b) -> f a -> f b  -- he f is not a concrete type (a type that a value can hold, like Int, Bool or Maybe String), but a type constructor that takes one type parameter.
