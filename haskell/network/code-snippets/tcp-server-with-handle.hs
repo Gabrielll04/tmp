@@ -1,5 +1,6 @@
 import Network.Socket
 import Network.Socket.ByteString
+import Socket.IO 
 
 main :: IO ()
 main = do
