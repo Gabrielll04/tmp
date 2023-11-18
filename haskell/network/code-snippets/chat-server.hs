@@ -34,7 +34,7 @@ runConn conn chan msgNum = do
   hSetBuffering hdl NoBuffering
   
   hPutStrLn hdl "What's yous name? "
-  name <- fmap init (hGetLine hdl)
+  name <- fmap init (hGetLine hdl) -- As the hdl is set as NoBuffering, we need to use a fmap to retrieve the entire string (?) (NoBuffering reads one character at a time)
   hPutStrLn hdl ("Welcome " ++ name ++ "!")
 
   commLine <- dupChan chan
