@@ -13,7 +13,7 @@ main = do
   sock <- socket (addrFamily addr) (addrSocketType addr) (addrProtocol addr)
   bind sock (addrAddress addr)
   listen sock 5
-  chan <- newChan
+  chan <- newChan -- Channels are shared FIFO queues implemented with MVars. In some way it are also existent in golang. Channels can grow indefinitely
   _ <- forkIO $ fix $ \loop -> do
     (_, _) <- readChan chan
     loop
