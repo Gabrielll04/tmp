@@ -78,6 +78,26 @@ _ = refl
 _ : to 0 ≡ ⟨⟩ O
 _ = refl 
 
+_ : to 3 ≡ ⟨⟩ I I
+_ =
+  begin
+    to 3
+  ≡⟨⟩
+    inc (to 2)
+  ≡⟨⟩
+    inc (inc (to 1))
+  ≡⟨⟩
+    inc (inc (inc (to 0)))
+  ≡⟨⟩
+    inc (inc (inc ⟨⟩))
+  ≡⟨⟩
+    inc (inc (⟨⟩ I))
+  ≡⟨⟩
+    inc (⟨⟩ I O)
+  ≡⟨⟩
+    ⟨⟩ I I
+  ∎
+
 from : Bin → ℕ
 from ⟨⟩ = zero
 from (b O) = 2 * (from b)
