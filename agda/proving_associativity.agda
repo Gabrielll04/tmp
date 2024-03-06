@@ -63,7 +63,7 @@ _ =
     suc (m + n) + p
   ≡⟨⟩
     suc ((m + n) + p)
-  ≡⟨ cong suc (+-assoc m n p) ⟩ -- cong for chain reasoning, where a justification for the equation appears wihin angle brackets. "cong suc" prefaces suc to each side to yield the needed question 
+  ≡⟨ cong suc (+-assoc m n p) ⟩ -- cong for chain reasoning, where a justification for the equation appears wihin angle brackets. "cong suc" prefaces suc to each side to yield the needed question.  -- isso é como transformar "suc m" em "m", e compensar essa perda mudando a justificativa da função. 
     suc (m + (n + p))
   ≡⟨⟩
     suc m + (n + p)
