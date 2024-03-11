@@ -1,4 +1,4 @@
--- write your imports here
+-- write your imports here, im too lazy to do that
 
 *-distrib-+ : ∀ (m n p : ℕ) → (m + n) * p ≡ m * p + n * p
 *-distrib-+ zero n p =
